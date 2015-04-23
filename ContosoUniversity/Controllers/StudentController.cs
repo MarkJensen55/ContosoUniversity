@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace ContosoUniversity.Controllers
 {
@@ -101,7 +102,7 @@ namespace ContosoUniversity.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 // log the error ( uncomment the dex variable & write line here to log error)
                 ModelState.AddModelError("", "Unable to save changes.  Check with your system admin.");
@@ -141,7 +142,7 @@ namespace ContosoUniversity.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 // uncomment dex & log the error
                 ModelState.AddModelError("", "Unable to save changes.  Check with your system administrator");
@@ -179,7 +180,7 @@ namespace ContosoUniversity.Controllers
                 db.Students.Remove(student);
                 db.SaveChanges();
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 // place code to log the error here
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
