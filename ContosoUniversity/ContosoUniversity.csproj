@@ -147,6 +147,14 @@
     <Compile Include="Migrations\201504231944173_firstNameName.Designer.cs">
       <DependentUpon>201504231944173_firstNameName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504271800472_complexdata.cs" />
+    <Compile Include="Migrations\201504271800472_complexdata.Designer.cs">
+      <DependentUpon>201504271800472_complexdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504271827204_complexdata2.cs" />
+    <Compile Include="Migrations\201504271827204_complexdata2.Designer.cs">
+      <DependentUpon>201504271827204_complexdata2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -222,6 +230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504231944173_firstNameName.resx">
       <DependentUpon>201504231944173_firstNameName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504271800472_complexdata.resx">
+      <DependentUpon>201504271800472_complexdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504271827204_complexdata2.resx">
+      <DependentUpon>201504271827204_complexdata2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
