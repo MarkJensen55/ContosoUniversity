@@ -59,7 +59,7 @@
 
 </table>
 
-if   (model.Courses != null)
+@if   (Model.Courses != null)
 {
 
 <h3>Courses Taught by Selected Instructor</h3>
@@ -91,6 +91,8 @@ if   (model.Courses != null)
                 @item.Department.Name
             </td>
         </tr>
+    }
   
 </table>
+    
 }
