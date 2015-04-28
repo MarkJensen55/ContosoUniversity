@@ -28,15 +28,26 @@ namespace ContosoUniversity.Controllers
             if (id != null)
             {
                 ViewBag.InstructorId = id.Value;
+                ViewBag.InstructorName = viewModel.Instructors.Where(i => i.InstructorID == id.Value).Single().FullName;
                 viewModel.Courses = viewModel.Instructors.Where(
                     i => i.InstructorID == id.Value).Single().Courses;
             }
 
             if (courseID != null)
             {
-                ViewBag.CourseID = courseID.Value;
-                viewModel.Enrollments = viewModel.Courses.Where(
-                    x => x.CourseID == courseID).Single().Enrollments;
+                // Lazy loading version
+                //ViewBag.CourseID = courseID.Value;
+                //viewModel.Enrollments = viewModel.Courses.Where(
+                //    x => x.CourseID == courseID).Single().Enrollments;
+
+                //Explicit loading version
+                var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
+                db.Entry(selectedCourse).Collection(x => x.Enrollments).Load();
+                foreach (Enrollment enrollment in selectedCourse.Enrollments)
+                {
+                    db.Entry(enrollment).Reference(x => x.Student).Load();
+                }
+                viewModel.Enrollments = selectedCourse.Enrollments;
             }
 
             return View (viewModel);
